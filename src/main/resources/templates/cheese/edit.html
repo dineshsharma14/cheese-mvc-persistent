@@ -2,7 +2,8 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
 <body class="container">
-<h1 th:text="${title}">Default Title</h1>
+
+<h1 th:text="Edit + ${cheese.name}">Default Title</h1>
 
 <nav th:replace="fragments :: navigation"></nav>
 
@@ -12,23 +13,22 @@
         <input class="form-control" th:field="*{name}" />
         <span th:errors="*{name}" class="error"></span>
     </div>
-
     <div class="form-group">
         <label th:for="description">Description</label>
-        <input class="form-control" th:field="*{description}" />
+        <input class="form-control" th:field="*{description}"/>
         <span th:errors="*{description}" class="error"></span>
     </div>
 
     <div class="form-group">
-        <label th:for="category">Type</label>
+        <label th:for="category">Category</label>
         <select name="categoryId">
             <option th:each="category : ${categories}"
                     th:text="${category.name}"
                     th:value="${category.id}"></option>
         </select>
     </div>
-
-    <input type="submit" value="Add Cheese" />
+    <input type="hidden" th:value="${cheese.Id}" name="cheeseId"/>
+    <input type="submit" value="Edit Cheese"/>
 </form>
 
 </body>
